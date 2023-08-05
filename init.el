@@ -13,7 +13,7 @@
 (require 'cl-lib)
 (defvar my-packages
   '(gruvbox-theme undo-tree
-    consult counsel company centaur-tabs))
+    vertico marginalia consult counsel company)) ;centaur-tabs
 
 (defun my-packages-installed-p ()
   (cl-loop for p in my-packages
@@ -42,21 +42,9 @@
 
 ;; undo-tree
 (global-undo-tree-mode)
-(counsel-mode)
-
-;; centaur-tabs
-(centaur-tabs-mode t)
-(centaur-tabs-headline-match)
-(centaur-tabs-group-by-projectile-project)
-(centaur-tabs-change-fonts "Consolas" 130)
-(setq centaur-tabs-set-icons t)
-(setq centaur-tabs-set-bar 'over)
-(setq centaur-tabs-style "slant")
-(setq centaur-tabs-modified-marker "∙")
-(setq centaur-tabs-set-modified-marker t)
-(setq centaur-tabs-gray-out-icons 'buffer)
-(global-set-key (kbd "C-<left>")  'centaur-tabs-backward)
-(global-set-key (kbd "C-<right>") 'centaur-tabs-forward)
+(vertico-mode)
+(vertico-mouse-mode)
+(marginalia-mode)
 
 ;; global settings ----------------------------------------------------------------------------------
 (tool-bar-mode 0)
@@ -155,7 +143,11 @@
 (global-set-key (kbd "C-w") 'save-buffer)
 (global-set-key (kbd "C-f") 'find-file)
 (global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-;") 'execute-extended-command)
 (global-set-key (kbd "C-d") 'kill-whole-line)
+(global-set-key (kbd "C-<left>") 'previous-buffer)
+(global-set-key (kbd "C-<right>") 'next-buffer)
+
 (global-set-key (kbd "C-S-s") 'shell-command)
 (global-set-key (kbd "C-S-v") 'eval-expression)
 (global-set-key (kbd "C-S-r") 'linarcx-reload-init-file)
@@ -255,7 +247,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(## company undo-tree gruvbox-theme)))
+ '(package-selected-packages '(vertico ## company undo-tree gruvbox-theme)))
 
 
 ;; garbage ----------------------------------------------------------------------------------
@@ -281,3 +273,17 @@
 ;;  (hl-line-mode t)
 ;;	(electric-pair-mode 1)
 ;;	(company-mode)))
+
+;; centaur-tabs
+;(centaur-tabs-mode t)
+;(centaur-tabs-headline-match)
+;(centaur-tabs-group-by-projectile-project)
+;(centaur-tabs-change-fonts "Consolas" 130)
+;(setq centaur-tabs-set-icons t)
+;(setq centaur-tabs-set-bar 'over)
+;(setq centaur-tabs-style "slant")
+;(setq centaur-tabs-modified-marker "∙")
+;(setq centaur-tabs-set-modified-marker t)
+;(setq centaur-tabs-gray-out-icons 'buffer)
+;(global-set-key (kbd "C-<left>")  'centaur-tabs-backward)
+;(global-set-key (kbd "C-<right>") 'centaur-tabs-forward)
