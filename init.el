@@ -9,6 +9,26 @@
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (package-initialize)
 
+; lovely packages that i need :)
+(require 'cl-lib)
+(defvar my-packages
+  '(gruvbox-theme
+    vertico marginalia consult counsel orderless company undo-tree)) ;centaur-tabs
+
+(defun my-packages-installed-p ()
+  (cl-loop for p in my-packages
+           when (not (package-installed-p p)) do (cl-return nil)
+           finally (cl-return t)))
+
+(unless (my-packages-installed-p)
+  ;; check for new packages (package versions)
+  (package-refresh-contents)
+  ;; install the missing packages
+  (dolist (p my-packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
+
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -17,13 +37,33 @@
         use-package-expand-minimally t))
 
 (use-package gruvbox-theme)
-(use-package marginalia
+(use-package gruvbox-theme
   :init
+  (global-undo-tree-mode))
+
+;(use-package marginalia
+;  :init
+;  (marginalia-mode))
+
+;; Enable rich annotations using the Marginalia package
+(use-package marginalia
+  ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
+  ;; available in the *Completions* buffer, add it to the
+  ;; `completion-list-mode-map'.
+  :bind (:map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+
+  ;; The :init section is always executed.
+  :init
+
+  ;; Marginalia must be activated in the :init section of use-package such that
+  ;; the mode gets enabled right away. Note that this forces loading the
+  ;; package.
   (marginalia-mode))
 
 (use-package consult
   ;; Replace bindings. Lazily loaded due by `use-package'.
-  ;:bind (;; C-c bindings in `mode-specific-map'
+  :bind (;; C-c bindings in `mode-specific-map'
      ;;    ("C-c M-x" . consult-mode-command)
      ;;    ("C-c h" . consult-history)
      ;;    ("C-c k" . consult-kmacro)
@@ -32,7 +72,7 @@
      ;;    ([remap Info-search] . consult-info)
      ;;    ;; C-x bindings in `ctl-x-map'
      ;;    ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
-     ;;    ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+         ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
      ;;    ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
      ;;    ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
      ;;    ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
@@ -73,7 +113,8 @@
      ;;    ;; Minibuffer history
      ;;    :map minibuffer-local-map
      ;;    ("M-s" . consult-history)                 ;; orig. next-matching-history-element
-     ;;    ("M-r" . consult-history))                ;; orig. previous-matching-history-element
+     ;;    ("M-r" . consult-history)                 ;; orig. previous-matching-history-element
+     )
 
   ;; Enable automatic preview at point in the *Completions* buffer. This is
   ;; relevant when you use the default completion UI.
@@ -150,16 +191,16 @@
   (vertico-mode)
   (vertico-mouse-mode)
 
-  ;; Different scroll margin
-  (setq vertico-scroll-margin 0)
+  ;;; Different scroll margin
+  (setq vertico-scroll-margin 4)
 
-  ;; Show more candidates
-  (setq vertico-count 20)
+  ;;; Show more candidates
+  ;(setq vertico-count 20)
 
-  ;; Grow and shrink the Vertico minibuffer
-  (setq vertico-resize t)
+  ;;; Grow and shrink the Vertico minibuffer
+  ;(setq vertico-resize t)
 
-  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+  ;;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
   (setq vertico-cycle t)
   )
 
@@ -314,8 +355,11 @@
 (global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "C-;") 'execute-extended-command)
 (global-set-key (kbd "C-d") 'kill-whole-line)
+(global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-<left>") 'previous-buffer)
 (global-set-key (kbd "C-<right>") 'next-buffer)
+(global-set-key (kbd "M-g g") 'consult-goto-line)
+(global-set-key (kbd "C-r") 'consult-ripgrep)
 
 (global-set-key (kbd "C-S-s") 'shell-command)
 (global-set-key (kbd "C-S-v") 'eval-expression)
@@ -458,23 +502,3 @@
 ;(global-set-key (kbd "C-<right>") 'centaur-tabs-forward)
 
 ;; undo-tree
-;;(global-undo-tree-mode)
-
-;; lovely packages that i need :)
-;(require 'cl-lib)
-;(defvar my-packages
-;  '(gruvbox-theme
-;    vertico marginalia consult counsel company)) ;centaur-tabs undo-tree
-;
-;(defun my-packages-installed-p ()
-;  (cl-loop for p in my-packages
-;           when (not (package-installed-p p)) do (cl-return nil)
-;           finally (cl-return t)))
-;
-;(unless (my-packages-installed-p)
-;  ;; check for new packages (package versions)
-;  (package-refresh-contents)
-;  ;; install the missing packages
-;  (dolist (p my-packages)
-;    (when (not (package-installed-p p))
-;      (package-install p))))
