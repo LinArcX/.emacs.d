@@ -1,6 +1,8 @@
 elpa/
 garbage/
+tutorial/
 eln-cache/
+auto-save-list/
 .init.el.~undo-tree~
 network-security.data
 ..gitignore.~undo-tree~
