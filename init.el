@@ -1,18 +1,19 @@
-; init directories
+;; init directories
 (defvar user-home-directory (concat (getenv "HOME") "/"))
 (setq user-emacs-directory (concat user-home-directory ".emacs.d/"))
 (add-to-list 'load-path (concat user-emacs-directory "packages/"))
+;;----------------------------------------------------------------------------------
 
-; init pacakge.el
+;; init pacakge.el
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (package-initialize)
 
-; Install packages with package.el
+;; install packages with package.el
 (require 'cl-lib)
 (defvar my-packages
-  '(gruvbox-theme undo-tree company))
+  '(gruvbox-theme undo-tree company centaur-tabs))
 
 (defun my-packages-installed-p ()
   (cl-loop for p in my-packages
@@ -26,12 +27,30 @@
   (dolist (p my-packages)
     (when (not (package-installed-p p))
       (package-install p))))
+;;----------------------------------------------------------------------------------
 
-; enable packages
+;; company
 (add-hook 'after-init-hook 'global-company-mode)
+
+;; undo-tree
 (global-undo-tree-mode)
 
-; global settings
+;; centaur-tabs
+(centaur-tabs-mode t)
+(centaur-tabs-headline-match)
+(centaur-tabs-group-by-projectile-project)
+(centaur-tabs-change-fonts "FantasqueSansMono" 130)
+(setq centaur-tabs-set-icons t)
+(setq centaur-tabs-set-bar 'over)
+(setq centaur-tabs-style "slant")
+(setq centaur-tabs-modified-marker "∙")
+(setq centaur-tabs-set-modified-marker t)
+(setq centaur-tabs-gray-out-icons 'buffer)
+(global-set-key (kbd "C-<left>")  'centaur-tabs-backward)
+(global-set-key (kbd "C-<right>") 'centaur-tabs-forward)
+;;----------------------------------------------------------------------------------
+
+;; global settings
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
@@ -45,7 +64,7 @@
 (add-to-list 'default-frame-alist '(font . "Consolas-13")) ;FiraCodeMedium / FantasqueSansMono / CascadiaCode
 ;(set-face-attribute 'default nil :height 145)
 
-; change theme based on the hour of day
+;; change theme based on the hour of day
 (run-at-time "09:00" nil (lambda () (load-theme 'gruvbox-light-hard t)))
 (run-at-time "11:00" nil (lambda () (load-theme 'gruvbox-light-medium t)))
 (run-at-time "16:00" nil (lambda () (load-theme 'gruvbox-light-soft t)))
@@ -79,13 +98,14 @@
   (hl-line-mode t)
 	(electric-pair-mode 1)
 	(company-mode)))
+;;----------------------------------------------------------------------------------
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(company undo-tree gruvbox-theme)))
+ '(package-selected-packages '(## company undo-tree gruvbox-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
