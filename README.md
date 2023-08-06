@@ -19,6 +19,7 @@ My .emacs.d configurations.
 - C-h C-q: help-quick-toggle
   shows most used keybidings.
 - C-h k: describe-key
+- C-h v: describe-variable
 
 - C-x b: consult-buffer
   list all buffers, file, etc.

@@ -36,16 +36,6 @@
   (setq use-package-always-ensure t
         use-package-expand-minimally t))
 
-(cond ((eq system-type 'gnu/linux)
-  (setq linarcx-shell "/bin/bash")
-  (setq-default shell-file-name linarcx-shell)
-  (setq-default explicit-shell-file-name linarcx-shell)
-  (setq dap-lldb-debug-program '("/usr/bin/lldb-vscode"))
-  ;(setq bmkp-current-bookmark-file "~/.emacs.d/bookmarks_linux.bmk")
-  (setq dired-listing-switches "-lghA --time-style long-iso --group-directories-first")
-  (global-set-key (kbd "M-t") (lambda () (interactive) (term linarcx-shell)))
-  ))
-
 ;;centaur-tabs undo-tree
 (use-package mentor)
 
@@ -501,6 +491,16 @@
  ;; If there is more than one, they won't work right.
  ;'(mentor-rtorrent-download-directory nil nil nil "/mnt/E/rtorrent/download")
  '(package-selected-packages '(vertico ## company gruvbox-theme)))
+
+(cond ((eq system-type 'gnu/linux)
+  (setq linarcx-shell "/bin/bash")
+  (setq-default shell-file-name linarcx-shell)
+  (setq-default explicit-shell-file-name linarcx-shell)
+  (setq dap-lldb-debug-program '("/usr/bin/lldb-vscode"))
+  (setq bookmark-default-file "~/.emacs.d/bookmarks_linux")
+  (setq dired-listing-switches "-lghA --time-style long-iso --group-directories-first")
+  (global-set-key (kbd "M-t") (lambda () (interactive) (term linarcx-shell)))
+  ))
 
 
 ;; garbage ----------------------------------------------------------------------------------

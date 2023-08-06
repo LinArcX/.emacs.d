@@ -1,0 +1,83 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("book_computer"
+ (filename . "/mnt/D/books/01_computer/")
+ (front-context-string . "tools\n  -rwxrwxr")
+ (rear-context-string . "021-02-26 09:54 ")
+ (position . 694)
+ (last-modified 25807 39698 192671 277000))
+("french"
+ (filename . "/mnt/D/books/02_languages/02_french/")
+ (front-context-string . "00_edito\n  drwxr")
+ (rear-context-string . "023-07-30 22:02 ")
+ (position . 82)
+ (last-modified 25807 39665 950950 259000))
+("cpp_videos"
+ (filename . "/mnt/D/video/computer/languages/c++/")
+ (front-context-string . "00-Pluralsight\n ")
+ (rear-context-string . "021-05-07 16:35 ")
+ (position . 82)
+ (last-modified 25807 39650 153165 710000))
+("c_videos"
+ (filename . "/mnt/D/video/computer/languages/c/")
+ (front-context-string . "00_bitwise\n  drw")
+ (rear-context-string . "021-05-29 18:55 ")
+ (position . 80)
+ (last-modified 25807 39638 103135 994000))
+("ush"
+ (filename . "/mnt/D/workspace/c/01_active/ush/")
+ (front-context-string . ".git\n  drwxrwxrw")
+ (rear-context-string . "023-07-23 21:54 ")
+ (position . 79)
+ (last-modified 25807 39601 881485 106000))
+("life"
+ (filename . "/mnt/D/workspace/other/life/")
+ (front-context-string . ".git\n  drwxrwxrw")
+ (rear-context-string . "023-07-30 22:04 ")
+ (position . 74)
+ (last-modified 25807 39578 348204 175000))
+("winconf"
+ (filename . "/mnt/D/workspace/other/winconf/")
+ (front-context-string . ".config\n  drwxrw")
+ (rear-context-string . "022-09-18 10:34 ")
+ (position . 77)
+ (last-modified 25807 39570 125125 591000))
+("vivre"
+ (filename . "/mnt/D/workspace/other/vivre/")
+ (front-context-string . ".git\n  drwxrwxrw")
+ (rear-context-string . "023-07-29 23:53 ")
+ (position . 75)
+ (last-modified 25807 39560 8680 156000))
+(".bashrc"
+ (filename . "~/.bashrc")
+ (front-context-string . "# TODO\n# never u")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 25807 39389 411445 49000))
+("init.el"
+ (filename . "~/.emacs.d/init.el")
+ (front-context-string . ";; init director")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 25807 39357 674491 577000))
+(".emacs.d.readme.md"
+ (filename . "~/.emacs.d/README.md")
+ (front-context-string . "# .emacs.d\nMy .e")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 25807 39321 506101 865000))
+("VoidConf"
+ (filename . "~/VoidConf/")
+ (front-context-string . ".git\n  drwxr-xr-")
+ (rear-context-string . "023-08-06 12:12 ")
+ (position . 73)
+ (last-modified 25807 39281 449763 338000))
+(".emacs.d"
+ (filename . "~/.emacs.d/")
+ (front-context-string . ".git\n  drwx-----")
+ (rear-context-string . "023-08-06 15:14 ")
+ (position . 73)
+ (last-modified 25807 40275 461197 351000))
+)
