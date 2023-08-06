@@ -9,6 +9,9 @@
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (package-initialize)
 
+(require 'visible-mark)
+(visible-mark-mode)
+
 ; lovely packages that i need :)
 (require 'cl-lib)
 (defvar my-packages
@@ -369,6 +372,22 @@
   (find-file "~/.emacs.d/init.el")
   (eval-buffer))
 
+
+(defun save-with-line-kmark ()
+  "Save the buffer and set a mark at the current line."
+  (interactive)
+  (save-buffer)
+  (set-mark-command))
+
+(defun jump-back-to-latest-mark ()
+  (execute-kbd-macro [?\C-u ?\C- ]))
+  ;(interactive)
+  ;(let ((prefix-arg (universal-argument)))
+  ;  (set-mark-command prefix-arg)))
+
+
+;  (bookmark-set (format "Line %d" (line-number-at-pos))))
+
 ;; Since you're using emacs in client/server mode, you shouldn't close it!
 (global-unset-key (kbd "C-x C-c"))
 (global-unset-key (kbd "C-x C-d"))
@@ -387,6 +406,9 @@
 ;;; others
 (global-set-key (kbd "C-o") 'linarcx-open-new-line-switch-to-it)
 (global-set-key (kbd "C-q") 'linarcx-kill-current-window)
+(global-set-key (kbd "C-w") 'save-with-line-bookmark)
+(global-set-key (kbd "M-o") 'jump-back-to-latest-mark)
+
 (global-set-key (kbd "C-w") 'save-buffer)
 (global-set-key (kbd "C-f") 'find-file)
 (global-set-key (kbd "C-s") 'swiper)

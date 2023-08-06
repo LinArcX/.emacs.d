@@ -104,5 +104,31 @@ A:
 Q: how find/replace interactively?
 A:
 
+Q: How to select vertically?
+A:
+
+## Why i like emacs?
+- except some small cool features in emacs, i think it doesn't worth it to switch.
+- I mostly use terminal in my daily life and i have lots of scripts that really like them and they made me efficient.
+
+Some features that emacs has but neovim doesn't have:
+- versataile help system and documentaion.
+- some cool features/plugins like:
+    vertico
+    marginalia
+    consult
+    counsel
+    org
+
+## Why i hate emacs?
+- people advertise that you can read pdfs, browse web, play video, download torrent files. all of them are bullshit!
+  just try to open an image in emacs. it will freeze and hangs. since it still use single thread!
+- elisp is verbose and cryptic.
+- keybindings! oh, my god. one of the worst in the world.
+- and in general i think it takes me away from computer and low-level.
+
+## solution
+just stick with terminal apps. and find ways to improve neovim to have cool features of emacs.
+
 ## License
 ![License](https://img.shields.io/github/license/LinArcX/.emacs.d.svg)
