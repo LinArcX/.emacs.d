@@ -4,6 +4,8 @@ My .emacs.d configurations.
 ## keybindings
 - C-q: kill buffer.
 - C-k: kill line.
+- C-b: consult-buffer
+  switch to buffers, bookmarks, etc..
 - C-z: undo
 - C-g C-z: redo
 - C-a: beginning of line.
@@ -29,8 +31,13 @@ My .emacs.d configurations.
 
 - M-x eval-buffer: reload current buffer
 
+#### bookmarks
+create: C-x r m
+list: C-x r l
+delete: C-x r d
+help: C-h r
+
 ### potential to change
-- C-b: backward-char --> consult-buffer
 - C-t: transpose-char
 
 ###
@@ -53,7 +60,7 @@ A: C-l d
   (global-set-key (kbd "C-l d") 'duplicate-dwim)
 
 Q: how to jump back to parent directory in dired?
-A:
+A: ^ or Shift + 6
 
 Q: how bookmark files and directories?
 A:

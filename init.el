@@ -36,6 +36,16 @@
   (setq use-package-always-ensure t
         use-package-expand-minimally t))
 
+(cond ((eq system-type 'gnu/linux)
+  (setq linarcx-shell "/bin/bash")
+  (setq-default shell-file-name linarcx-shell)
+  (setq-default explicit-shell-file-name linarcx-shell)
+  (setq dap-lldb-debug-program '("/usr/bin/lldb-vscode"))
+  ;(setq bmkp-current-bookmark-file "~/.emacs.d/bookmarks_linux.bmk")
+  (setq dired-listing-switches "-lghA --time-style long-iso --group-directories-first")
+  (global-set-key (kbd "M-t") (lambda () (interactive) (term linarcx-shell)))
+  ))
+
 ;;centaur-tabs undo-tree
 (use-package mentor)
 
@@ -48,10 +58,6 @@
 (use-package undo-tree
   :init
   (global-undo-tree-mode))
-
-;(use-package marginalia
-;  :init
-;  (marginalia-mode))
 
 ;; Enable rich annotations using the Marginalia package
 (use-package marginalia
@@ -472,6 +478,12 @@
         (delete-other-windows)
       ))
   ))
+
+;(add-hook 'after-init-hook
+;          '(lambda ()
+;             (require 'bookmark)
+;             (bookmark-bmenu-list)
+;             (switch-to-buffer "*Bookmark List*")))
 
 ;; advices
 (defadvice load-theme (before disable-themes-first activate)
