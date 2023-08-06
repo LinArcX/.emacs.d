@@ -12,7 +12,7 @@
 ; lovely packages that i need :)
 (require 'cl-lib)
 (defvar my-packages
-  '(gruvbox-theme
+  '(gruvbox-theme mentor
     vertico marginalia consult counsel orderless company undo-tree)) ;centaur-tabs
 
 (defun my-packages-installed-p ()
@@ -36,8 +36,16 @@
   (setq use-package-always-ensure t
         use-package-expand-minimally t))
 
+;;centaur-tabs undo-tree
+(use-package mentor)
+
+(setq mentor-rtorrent-download-directory "/mnt/E/rtorrent/download")
+(setq mentor-rtorrent-keep-session t)
+(setq mentor-rtorrent-external-rpc "~/.rtorrent-rpc.socket")
+;(setq mentor-rtorrent-external-rpc "scgi://127.0.0.1:5000")
+
 (use-package gruvbox-theme)
-(use-package gruvbox-theme
+(use-package undo-tree
   :init
   (global-undo-tree-mode))
 
@@ -64,6 +72,10 @@
 (use-package consult
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
+         ("C-b" . consult-buffer)                ;; orig. switch-to-buffer
+         ("M-g g" . consult-goto-line)             ;; orig. goto-line
+         ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
+         ("C-r" . consult-ripgrep)
      ;;    ("C-c M-x" . consult-mode-command)
      ;;    ("C-c h" . consult-history)
      ;;    ("C-c k" . consult-kmacro)
@@ -72,7 +84,6 @@
      ;;    ([remap Info-search] . consult-info)
      ;;    ;; C-x bindings in `ctl-x-map'
      ;;    ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
-         ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
      ;;    ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
      ;;    ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
      ;;    ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
@@ -86,8 +97,7 @@
      ;;    ;; M-g bindings in `goto-map'
      ;;    ("M-g e" . consult-compile-error)
      ;;    ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
-     ;;    ("M-g g" . consult-goto-line)             ;; orig. goto-line
-     ;;    ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
+
      ;;    ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
      ;;    ("M-g m" . consult-mark)
      ;;    ("M-g k" . consult-global-mark)
@@ -98,7 +108,6 @@
      ;;    ("M-s D" . consult-locate)
      ;;    ("M-s g" . consult-grep)
      ;;    ("M-s G" . consult-git-grep)
-     ;;    ("M-s r" . consult-ripgrep)
      ;;    ("M-s l" . consult-line)
      ;;    ("M-s L" . consult-line-multi)
      ;;    ("M-s k" . consult-keep-lines)
@@ -184,7 +193,6 @@
 (use-package company
   :init
   (setq company-global-modes '(not org-mode)))
-;;centaur-tabs undo-tree
 
 (use-package vertico
   :init
@@ -345,10 +353,31 @@
   (kill-current-buffer)
   (delete-other-windows))
 
+(defun linarcx-open-new-line-switch-to-it ()
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))
+
+(defun linarcx-describe-bindings-fullscreen ()
+  (interactive)
+  (describe-bindings)
+  (delete-other-windows))
+
 ;; Since you're using emacs in client/server mode, you shouldn't close it!
 (global-unset-key (kbd "C-x C-c"))
 (global-unset-key (kbd "C-x C-d"))
+(global-unset-key (kbd "C-l"))
 
+;;; help
+(global-set-key (kbd "C-h b") 'linarcx-describe-bindings-fullscreen)
+
+;;; linarcx
+(global-set-key (kbd "C-l b") 'beginning-of-buffer)
+(global-set-key (kbd "C-l e") 'end-of-buffer)
+(global-set-key (kbd "C-l d") 'duplicate-dwim)
+
+;;; others
+(global-set-key (kbd "C-o") 'linarcx-open-new-line-switch-to-it)
 (global-set-key (kbd "C-q") 'linarcx-kill-current-window)
 (global-set-key (kbd "C-w") 'save-buffer)
 (global-set-key (kbd "C-f") 'find-file)
@@ -358,8 +387,6 @@
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-<left>") 'previous-buffer)
 (global-set-key (kbd "C-<right>") 'next-buffer)
-(global-set-key (kbd "M-g g") 'consult-goto-line)
-(global-set-key (kbd "C-r") 'consult-ripgrep)
 
 (global-set-key (kbd "C-S-s") 'shell-command)
 (global-set-key (kbd "C-S-v") 'eval-expression)
@@ -460,6 +487,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ ;'(mentor-rtorrent-download-directory nil nil nil "/mnt/E/rtorrent/download")
  '(package-selected-packages '(vertico ## company gruvbox-theme)))
 
 
