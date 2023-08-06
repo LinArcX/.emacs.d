@@ -1,6 +1,21 @@
 # .emacs.d
 My .emacs.d configurations.
 
+## why Emacs? and in which situations should i use it?
+my main concern are in my workflow are:
+- efficiency
+- speed
+
+So i don't browse web, watch videos, read pdf books, see images with emacs. (because they cause lags and slowness)
+But i use it as:
+- IDE
+- editor
+- file manager
+- second brain
+- calculator
+
+I still not sure should i use terminal inside emacs or not!
+
 ## keybindings
 - C-q: kill buffer.
 - C-k: kill line.
@@ -32,16 +47,10 @@ My .emacs.d configurations.
 
 - M-x eval-buffer: reload current buffer
 
-#### bookmarks
-create: C-x r m
-list: C-x r l
-delete: C-x r d
-help: C-h r
-
 ### potential to change
 - C-t: transpose-char
 
-###
+### Q&A
 Q: how jump to the beginning of the file?
 A: C-l b
   (global-unset-key (kbd "C-l"))
@@ -64,6 +73,12 @@ Q: how to jump back to parent directory in dired?
 A: ^ or Shift + 6
 
 Q: how bookmark files and directories?
+A: create: C-x r m
+  list: C-x r l
+  delete: C-x r d
+  help: C-h r
+
+Q: how unzip zip/rar files?
 A:
 
 ## License
