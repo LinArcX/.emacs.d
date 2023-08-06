@@ -49,6 +49,9 @@
   :init
   (global-undo-tree-mode))
 
+;; Prevent undo tree files from polluting your git repo
+(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+
 ;; Enable rich annotations using the Marginalia package
 (use-package marginalia
   ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
@@ -359,6 +362,12 @@
   (describe-bindings)
   (delete-other-windows))
 
+(defun eval-init-el ()
+  "Open and evaluate ~/.emacs.d/init.el."
+  (interactive)
+  (find-file "~/.emacs.d/init.el")
+  (eval-buffer))
+
 ;; Since you're using emacs in client/server mode, you shouldn't close it!
 (global-unset-key (kbd "C-x C-c"))
 (global-unset-key (kbd "C-x C-d"))
@@ -371,6 +380,8 @@
 (global-set-key (kbd "C-l b") 'beginning-of-buffer)
 (global-set-key (kbd "C-l e") 'end-of-buffer)
 (global-set-key (kbd "C-l d") 'duplicate-dwim)
+(global-set-key (kbd "C-l r") 'restart-emacs)
+(global-set-key (kbd "C-l l") 'eval-init-el)
 
 ;;; others
 (global-set-key (kbd "C-o") 'linarcx-open-new-line-switch-to-it)

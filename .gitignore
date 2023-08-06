@@ -1,6 +1,7 @@
 elpa/
-history
+undo/
 mentor/
+history
 garbage/
 tutorial/
 eln-cache/

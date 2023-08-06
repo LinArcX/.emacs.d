@@ -2,7 +2,13 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("home"
+((".trash"
+ (filename . "~/.trash/")
+ (front-context-string . "load\n  drwxr-xr-")
+ (rear-context-string . "023-08-06 08:17 ")
+ (position . 70)
+ (last-modified 25807 44152 322428 379000))
+("home"
  (filename . "~/")
  (front-context-string . ".bitcoin\n  drwx-")
  (rear-context-string . "020-05-18 12:21 ")
