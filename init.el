@@ -267,6 +267,7 @@
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
+(pixel-scroll-precision-mode 1)
 (show-paren-mode 1)
 (line-number-mode t)
 (column-number-mode t)
